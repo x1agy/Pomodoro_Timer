@@ -1,0 +1,25 @@
+.Header{
+    display: flex;
+    width: 100%;
+    background-color: aliceblue;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.headerTitle{
+    margin: 5px 0 5px 15px;
+}
+
+.headerLinks{
+    margin-right: 30px;
+    display: flex;
+    align-items: center;
+}
+
+.headerLinks h3{
+    margin-right: 10px;
+}
+
+.headerLinks a{
+    color: black;
+}
