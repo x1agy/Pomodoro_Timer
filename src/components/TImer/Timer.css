@@ -1,0 +1,95 @@
+.Timer{
+    background-color: aliceblue;
+    border-radius: 10px;
+    margin-top: 2%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+.timerClock{
+    color: lightblue;
+}
+
+.timerButtons button{
+    width: 100%;
+    height: 30px;
+    color: black;
+    font-weight: 900;
+    background-color: lightgray;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.timerButtons{
+    margin-bottom: 30px;
+}
+
+@media(min-width: 200px){
+    .Timer{
+        width: 60%;
+    }
+
+    .timerClock{
+        font-size: 40px;
+    }
+
+    .timerSettings{
+        margin-left: auto;
+    }
+
+    .timerButtons{
+        display: flex;
+        flex-direction: column;
+        width: 100px;
+        row-gap: 5px;
+    }
+    
+    .timerButtons button{
+        padding: 0;
+    }
+}
+
+@media(min-width: 380px){
+    .timerClock{
+        font-size: 70px;
+    }
+    .timerButtons{
+        display: flex;
+        flex-direction: row;
+        width: 100px;
+        column-gap: 10px;
+        justify-content: center;
+    }
+    .timerButtons button{
+        padding: 5px;
+    }
+}
+
+@media(min-width: 910px){
+    .Timer{
+        width: 700px;
+        height: 300px;
+    }
+
+    .timerSettings{
+        position: absolute;
+        right: 4%;
+        top: 4%;
+    }
+    
+    .timerClock{
+        font-size: 150px;
+    }
+
+    .timerButtons{
+        flex-direction: row;
+        width: 80%;
+        column-gap: 10px;
+    }
+
+    .timerButtons button{
+        padding: 0;
+    }
+}

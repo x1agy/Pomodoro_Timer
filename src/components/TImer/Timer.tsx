@@ -1,28 +1,35 @@
 import React from "react";
+import SettingsIcon from '@mui/icons-material/Settings';
+import './Timer.css'
+import { useDispatch, useSelector } from "react-redux";
+import { setSettingsIsOpen } from "../../state/settingsModal/settingsModalIsOpen";
+import { RootState } from "../../state/store";
 
 const Timer = () => {
-    const [timeMinutes, setTimeMinutes] = React.useState<string>('25');
-    const [timeSeconds, setTimeSeconds] = React.useState<string>('10');
+    const minutes = useSelector((state: RootState) => state.timerTime.minutes);
+    const seconds = useSelector((state: RootState) => state.timerTime.seconds);
+    const [timeMinutes, setTimeMinutes] = React.useState<string>(useSelector((state: RootState) => state.timerTime.minutes));
+    const [timeSeconds, setTimeSeconds] = React.useState<string>(useSelector((state: RootState) => state.timerTime.seconds));
     const [timerId, setTimerId] = React.useState<NodeJS.Timer | undefined>();
+    const dispatch = useDispatch();
 
     function startClock(){
-        let minutes = timeMinutes;
-        let seconds = timeSeconds
+        let tempMinutes = timeMinutes;
+        let tempSeconds = timeSeconds
         const intervalId = setInterval(() => {
-            if(seconds === '00'){
-                if(minutes === '00'){
+            if(tempSeconds === '00'){
+                if(tempMinutes === '00'){
                     clearInterval(intervalId)
                 }else{
-                    minutes = Number(minutes) < 11 ?  "0" + (Number(minutes) - 1) : (Number(minutes) - 1) + ''
-                    seconds = '60'
-                    setTimeMinutes(minutes)
-                    setTimeSeconds(seconds)
+                    tempMinutes = Number(tempMinutes) < 11 ?  "0" + (Number(tempMinutes) - 1) : (Number(tempMinutes) - 1) + ''
+                    tempSeconds = '59'
+                    setTimeMinutes(tempMinutes)
+                    setTimeSeconds(tempSeconds)
                 }
             }else{
-                seconds = Number(seconds) < 11 ? "0" + (Number(seconds) - 1) : (Number(seconds) - 1) + ''
-                setTimeSeconds(seconds)
+                tempSeconds = Number(tempSeconds) < 11 ? "0" + (Number(tempSeconds) - 1) : (Number(tempSeconds) - 1) + ''
+                setTimeSeconds(tempSeconds)
             }
-            console.log('cock')
         }, 1000)
         setTimerId(intervalId)
     }
@@ -31,24 +38,38 @@ const Timer = () => {
         <div
             className="Timer"
         >
+            <SettingsIcon 
+                className="timerSettings"
+                fontSize="large"
+                onClick={() => dispatch(setSettingsIsOpen())}
+            />
             <h1 className="timerClock">
                 {timeMinutes}:{timeSeconds}
             </h1>
 
             <div
-                className="TimerButtons"
+                className="timerButtons"
             >
                 <button
                     onClick={() => startClock()}
                     disabled={timerId ? true : false}
-                >START</button>
+                >СТАРТ</button>
 
                 <button
                     onClick={() => {
                         clearInterval(timerId);
                         setTimerId(undefined)
                     }}
-                >STOP</button>
+                >ПАУЗА</button>
+
+                <button
+                    onClick={() => {
+                        clearInterval(timerId);
+                        setTimerId(undefined);
+                        setTimeSeconds(seconds);
+                        setTimeMinutes(minutes);
+                    }}
+                >РЕСТАРТ</button>
             </div>
         </div>
     )

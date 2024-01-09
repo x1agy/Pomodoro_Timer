@@ -1,25 +1,44 @@
 .Header{
     display: flex;
-    width: 100%;
     background-color: aliceblue;
     align-items: center;
     justify-content: space-between;
-}
-
-.headerTitle{
-    margin: 5px 0 5px 15px;
+    width: 100%;
 }
 
 .headerLinks{
-    margin-right: 30px;
     display: flex;
     align-items: center;
 }
 
-.headerLinks h3{
-    margin-right: 10px;
+@media(min-width: 200px){
+    .Header{
+        font-size: small;
+    }
+
+    .headerTitle{
+        margin: 2px 0 2px 5px;
+    }
+
+    .headerLinks{
+        margin-right: 0;
+    }
 }
 
-.headerLinks a{
-    color: black;
+@media(min-width: 910px){
+    .Header{
+        font-size: large;
+    }
+    
+    .headerTitle{
+        margin: 5px 0 5px 15px;
+    }
+    
+    .headerLinks{
+        margin-right: 30px;
+    }
+    
+    .headerLinks h3{
+        margin-right: 10px;
+    }
 }

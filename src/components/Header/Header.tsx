@@ -18,6 +18,7 @@ const Header = () => {
                 <a 
                     href="https://github.com/x1agy"
                     target="_blank"
+                    rel="noreferrer"
                 ><GitHub /></a>
             </div>
         </div>
